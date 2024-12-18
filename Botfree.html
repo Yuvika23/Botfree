@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botfree Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("chatbot.jpg");
+            background-size: cover; /* Ensures the image covers the whole area */
+            background-position: center; /* Centers the image */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        .chatbot-container {
+            width: 400px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .chat-header {
+            background: #1e90ff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 3em; /* Increased font size to max */
+            border-radius: 8px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            position: absolute;
+            width: 100%;
+            bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .options button {
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #1e90ff;
+            font-size: 1.2em;
+            text-decoration: underline;
+            transition: color 0.3s;
+        }
+
+        .options button:hover {
+            color: #ff4500;
+        }
+
+        .night-mode {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #1e90ff;
+            text-decoration: underline;
+            transition: color 0.3s;
+        }
+
+        .night-mode:hover {
+            color: #ff4500;
+        }
+
+        /* Night Mode styles */
+        body.night-mode {
+            background-color: #1c1c1c;
+            color: white;
+        }
+
+        body.night-mode .chat-header {
+            background: #444;
+        }
+
+        /* Sign Up Form */
+        .signup-form {
+            display: none; /* Initially hidden */
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .signup-form input {
+            margin: 10px 0;
+            padding: 10px;
+            width: calc(100% - 20px);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .signup-form button {
+            padding: 10px 20px;
+            background-color: #1e90ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .signup-form button:hover {
+            background-color: #ff4500;
+        }
+    </style>
+</head>
+<body>
+    <div class="chatbot-container">
+        <div class="chat-header">Botfree</div>
+        <div class="options">
+            <button onclick="showLogin()">Login</button>
+        </div>
+        <div class="signup-form" id="signupForm">
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="email" id="email" placeholder="Email ID" required>
+            <input type="tel" id="phone" placeholder="Phone Number" required>
+            <button onclick="submitSignUp()">Submit</button>
+        </div>
+    </div>
+    <button class="night-mode" onclick="toggleNightMode()">Toggle Night Mode</button>
+    <button style="position: absolute; top: 20px; right: 20px; font-size: 1.2em; cursor: pointer; background: none; border: none; color: #1e90ff; text-decoration: underline;" onclick="showSignUp()">Sign Up</button>
+
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2024/10/27/17/20241027173650-C5J4R6OZ.js"></script>
+    <script>
+        function toggleNightMode() {
+            document.body.classList.toggle('night-mode');
+        }
+
+        function showLogin() {
+            const email = prompt("Enter your Email ID:");
+            const password = prompt("Enter your Password:");
+
+            if (email && password) {
+                alert("Login Successful!");
+            } else {
+                alert("Please enter both Email and Password.");
+            }
+        }
+
+        function showSignUp() {
+            const signupForm = document.getElementById("signupForm");
+            signupForm.style.display = signupForm.style.display === "flex" ? "none" : "flex";
+        }
+
+        function submitSignUp() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+
+            // Simple validation and submission alert
+            if (name && email && phone) {
+                alert(`Sign Up Successful!\nName: ${name}\nEmail: ${email}\nPhone: ${phone}`);
+                document.getElementById("signupForm").reset(); // Reset the form
+                showSignUp(); // Hide the form after submission
+            } else {
+                alert("Please fill in all fields.");
+            }
+        }
+    </script>
+</body>
+</html>
+
